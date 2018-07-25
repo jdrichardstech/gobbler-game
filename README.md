@@ -28,7 +28,9 @@ _As js files are no longer allowed in gmail, even when zipped,_<br />
 
 1.  Fix Bug: The snake sometimes goes past the edge of playing screen and sometimes ends correctly.
 
-2.  Fix audio console message: Not reading as an error but not optimal. (DOMException: play() failed because the user didn't interact with the document first.) Not reading as an error thanks to workaround but find another way.
+2.  Fix audio console message: Not reading as an error but in messages of developer tools.
+
+    > (DOMException: play() failed because the user didn't interact with the document first.) Not reading as an error thanks to workaround but find another way.
 
 3.  Refactor: so that setInterval function does not begin at the load of screen
 
