@@ -8,7 +8,7 @@
 
 1.  Download the file
 2.  Uncompress the .zip file
-3.  Change the extension of the games.txt file to games.js
+3.  Change the extension of the game.txt file to game.js
 4.  You now have the code and can run index.html in your Chrome Browser
 
 ## Github
