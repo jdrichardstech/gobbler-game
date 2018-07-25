@@ -15,6 +15,7 @@ const SQUARE = 25;
 // const SQUARE = 35;
 
 let gameSpeed = 80;
+let score = 0;
 
 CANVAS.style.display = "block";
 CANVAS.style.marginLeft = "auto";
@@ -72,18 +73,14 @@ let direction = e => {
 
   if (keyCode === 37 && dir !== "right") {
     dir = "left";
-    console.log(dir);
   } else if (keyCode === 38 && dir !== "down") {
     dir = "up";
-    console.log(dir);
   }
   if (keyCode === 39 && dir !== "left") {
     dir = "right";
-    console.log(dir);
   }
   if (keyCode === 40 && dir !== "up") {
     dir = "down";
-    console.log(dir);
   }
 };
 
@@ -102,6 +99,7 @@ let createSnake = () => {
 
 let checkFood = (snakeX, snakeY) => {
   if (snakeX === food.x && snakeY === food.y) {
+    score++;
     food = {
       x: xRandom(),
       y: yRandom()
@@ -121,13 +119,15 @@ let gameover = head => {
     collision(head, snake)
   ) {
     clearInterval(game);
+    CRASH.play();
     BUBBLES.pause();
     CTX.fillStyle = "#eee8d5";
     CTX.font = "40px serif";
     CTX.textAlign = "center";
-    CTX.fillText("Game Over", CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
+    CTX.fillText(`GAME OVER`, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 - 100);
+    CTX.fillText(`Your score: ${score}`, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
     CTX.fillText(
-      "Reload page to play again",
+      `Reload page to play again`,
       CANVAS_WIDTH / 2,
       CANVAS_HEIGHT / 2 + 50
     );
@@ -158,8 +158,15 @@ let checkDirection = direction => {
 
 document.addEventListener("keydown", direction);
 
-let draw = () => {
-  BUBBLES.play();
+let initSound = () => {
+  const bublesPromise = Promise.resolve(BUBBLES.play());
+  bublesPromise.then(() => console.log("audio running")).catch(err => {
+    console.log(err);
+  });
+};
+
+let playGame = () => {
+  initSound();
   createImages();
   createSnake();
   checkDirection(dir);
@@ -171,4 +178,4 @@ let draw = () => {
   gameover(newHead);
 };
 
-let game = setInterval(draw, gameSpeed);
+let game = setInterval(playGame, gameSpeed);
