@@ -68,6 +68,10 @@ let collision = (head, arr) => {
   return false;
 };
 
+let gameLoad = () => {
+  location.reload();
+};
+
 let direction = e => {
   let keyCode = e.keyCode;
 
@@ -122,12 +126,12 @@ let gameover = head => {
     CRASH.play();
     BUBBLES.pause();
     CTX.fillStyle = "#eee8d5";
-    CTX.font = "40px serif";
+    CTX.font = "40px Do Hyeon";
     CTX.textAlign = "center";
     CTX.fillText(`GAME OVER`, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 - 100);
     CTX.fillText(`Your score: ${score}`, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
     CTX.fillText(
-      `Reload page to play again`,
+      `Click PLAY to try again`,
       CANVAS_WIDTH / 2,
       CANVAS_HEIGHT / 2 + 50
     );
