@@ -6,21 +6,12 @@ const gameLoad = () => {
   const CANVAS_HEIGHT = 500;
   const CANVAS_WIDTH = 1000;
 
+  const SQUARE = 25;
   const NUM_SQUARES_HORIZONTAL = 40;
   const NUM_SQUARES_VERTICAL = 20;
 
   const CANVAS = document.getElementById("gameBoard");
   const CTX = CANVAS.getContext("2d");
-
-  const SQUARE = 25;
-
-  let gameSpeed = 110;
-  let score = 0;
-
-  CANVAS.style.display = "block";
-  CANVAS.style.marginLeft = "auto";
-  CANVAS.style.marginRight = "auto";
-  CANVAS.style.marginTop = 25;
 
   const BEACH = new Image();
   const SMILER = new Image();
@@ -30,6 +21,11 @@ const gameLoad = () => {
   const CRASH = new Audio();
   const EAT = new Audio();
 
+  CANVAS.style.display = "block";
+  CANVAS.style.marginLeft = "auto";
+  CANVAS.style.marginRight = "auto";
+  CANVAS.style.marginTop = 25;
+
   BEACH.src = "img/aquarium.jpg";
   SMILER.src = "img/egg_25.png";
   SNAKEHEAD.src = "img/greendot_25.png";
@@ -38,6 +34,8 @@ const gameLoad = () => {
   CRASH.src = "audio/crash.mp3";
   EAT.src = "audio/squish.mp3";
 
+  let gameSpeed = 110;
+  let score = 0;
   let dir; //direction variable
   let snake = [];
   snake[0] = {
@@ -136,8 +134,6 @@ const gameLoad = () => {
         CANVAS_WIDTH / 2,
         CANVAS_HEIGHT / 2 + 50
       );
-    } else {
-      snake.unshift(head);
     }
   };
 
@@ -179,6 +175,7 @@ const gameLoad = () => {
       y: snake_Yaxis
     };
     gameover(newHead);
+    snake.unshift(newHead);
   };
 
   let game = setInterval(playGame, gameSpeed);
