@@ -26,11 +26,11 @@ _As js files are no longer allowed in gmail, even when zipped,_<br />
 
 ## Next Steps
 
-1.  Fix Bug: There is a bug that needs to be addressed. The snake sometimes goes past the edge of playing screen and sometimes ends correctly.
+1.  Fix Bug: The snake sometimes goes past the edge of playing screen and sometimes ends correctly.
 
-2.  Fix audio console message. Not reading as an error but not optimal. (DOMException: play() failed because the user didn't interact with the document first.) Not reading as an error thanks to workaround but find another way.
+2.  Fix audio console message: Not reading as an error but not optimal. (DOMException: play() failed because the user didn't interact with the document first.) Not reading as an error thanks to workaround but find another way.
 
-3.  Refactor so that setInterval function does not begin at the load of screen
+3.  Refactor: so that setInterval function does not begin at the load of screen
 
 4.  Create Slow, Medium, Fast buttons to control the speed of the game so that one can choose rate of play
 
