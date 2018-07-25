@@ -34,6 +34,10 @@ _As js files are no longer allowed in gmail, even when zipped..._<br />
 
 3.  Refactor: so that setInterval function does not begin at the load of screen
 
-4.  Create Slow, Medium, Fast buttons to control the speed of the game so that one can choose rate of play
+4.  Address no sound issue in Safari
 
-5.  Add score to screen while playing
+5.  Address Promise error for crash sound at end of game in Safari
+
+6.  Create Slow, Medium, Fast buttons to control the speed of the game so that one can choose rate of play
+
+7.  Add score to screen while playing
