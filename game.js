@@ -1,4 +1,4 @@
-let gameLoad = () => {
+const gameLoad = () => {
   location.reload();
 };
 
@@ -28,13 +28,15 @@ let gameLoad = () => {
   const SNAKEBODY = new Image();
   const BUBBLES = new Audio();
   const CRASH = new Audio();
+  const EAT = new Audio();
 
   BEACH.src = "img/aquarium.jpg";
   SMILER.src = "img/egg_25.png";
-  SNAKEHEAD.src = "img/blue_25.png";
+  SNAKEHEAD.src = "img/greendot_25.png";
   SNAKEBODY.src = "img/reddot_25.png";
   BUBBLES.src = "audio/bubbles.mp3";
   CRASH.src = "audio/crash.mp3";
+  EAT.src = "audio/squish.mp3";
 
   let dir; //direction variable
   let snake = [];
@@ -58,7 +60,7 @@ let gameLoad = () => {
     y: yRandom()
   };
 
-  let direction = e => {
+  const direction = e => {
     let keyCode = e.keyCode;
 
     if (keyCode === 37 && dir !== "right") {
@@ -76,12 +78,12 @@ let gameLoad = () => {
 
   document.addEventListener("keydown", direction);
 
-  let createImages = () => {
+  const createImages = () => {
     CTX.drawImage(BEACH, 0, 0);
     CTX.drawImage(SMILER, food.x, food.y);
   };
 
-  let createSnake = () => {
+  const createSnake = () => {
     snake.forEach(item => {
       item === snake[0]
         ? CTX.drawImage(SNAKEHEAD, item.x, item.y)
@@ -89,8 +91,9 @@ let gameLoad = () => {
     });
   };
 
-  let checkFood = (snakeX, snakeY) => {
+  const checkFood = (snakeX, snakeY) => {
     if (snakeX === food.x && snakeY === food.y) {
+      EAT.play();
       score++;
       food = {
         x: xRandom(),
@@ -102,7 +105,7 @@ let gameLoad = () => {
     return;
   };
 
-  let collision = (head, arr) => {
+  const collision = (head, arr) => {
     for (let i = 0; i < arr.length; i++) {
       if (head.x === arr[i].x && head.y === arr[i].y) {
         return true;
@@ -112,7 +115,7 @@ let gameLoad = () => {
     return false;
   };
 
-  let gameover = head => {
+  const gameover = head => {
     if (
       snake_Xaxis === -50 ||
       snake_Xaxis > NUM_SQUARES_HORIZONTAL * SQUARE ||
@@ -138,7 +141,7 @@ let gameLoad = () => {
     }
   };
 
-  let checkDirection = direction => {
+  const checkDirection = direction => {
     switch (direction) {
       case "left":
         snake_Xaxis -= SQUARE;
@@ -158,14 +161,14 @@ let gameLoad = () => {
     }
   };
 
-  let initSound = () => {
+  const initSound = () => {
     const bublesPromise = Promise.resolve(BUBBLES.play());
     bublesPromise.then(() => console.log("audio running")).catch(err => {
       console.log(err);
     });
   };
 
-  let playGame = () => {
+  const playGame = () => {
     initSound();
     createImages();
     createSnake();
